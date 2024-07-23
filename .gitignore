@@ -2,3 +2,4 @@
 *__pycache__/
 .vscode/
 *smoke-test/
+*smoke-test-data/
