@@ -20,7 +20,43 @@ rule step_1_correct_reads:
     resources:
         mem="8G"
     shell:
-        "python scripts/correct_reads.py {input.g} {input.m} {input.c} {output}"
+        "python scripts/correct_reads.py "
+        "--corr-read-counts {output} "
+        "--read-counts {input.c} "
+        "--gc {input.g} "
+        "--map {input.m} "
+        "&> {log}"
 
-# step 2 plot cnv
-# step 3 plot baf
+
+rule step_2_plot_cnv:
+    input:
+        config.plasma_corr_read_counts
+    output:
+        config.plasma_cnv_plot
+    conda:
+        "envs/plot_cnv.yaml"
+    params:
+        plots_dir=config.cnv_dir
+    log:
+        config.log_plasma_cnv_plot
+    shell:
+        "python scripts/plot_cnv.py "
+        "--plasma-corr-read-counts {input} "
+        "--plots-dir {params.plots_dir} "
+        "&> {log}"
+
+
+rule step_3_plot_baf:
+    input:
+        config.plasma_allele_counts
+    output:
+        config.plasma_baf_plot
+    conda:
+        "envs/plot_cnv.yaml"
+    log:
+        config.log_plasma_baf_plot
+    shell:
+        "python scripts/plot_baf.py "
+        "--plasma-allele-counts {input} "
+        "--baf-plot {output} "
+        "&> {log}"

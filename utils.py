@@ -6,6 +6,14 @@ class ConfigManager:
     def __init__(self, config) -> None:
         self.config = config
         
+    @property
+    def plot_cnv(self) -> bool:
+        return self.config['plots']['cnv']
+        
+    @property
+    def plot_baf(self) -> bool:
+        return self.config['plots']['baf']
+    
     # Inputs: data files
     @property
     def plasma_read_counts(self) -> Path:
@@ -39,15 +47,34 @@ class ConfigManager:
     
     @property
     def log_plasma_corr_read_counts(self) -> Path:
-        return self.cnv_dir.joinpath("plasma_corr_read_counts.tsv")
+        return self.cnv_dir.joinpath("plasma_corr_read_counts.log")
+    
+    @property
+    def plasma_cnv_plot(self) -> Path:
+        return self.cnv_dir.joinpath("plasma_cnv_plot.png")
+    
+    @property
+    def log_plasma_cnv_plot(self) -> Path:
+        return self.cnv_dir.joinpath("plasma_cnv_plot.log")
     
     # Outputs: baf plots
     @property
     def baf_dir(self) -> Path:
         return self.out_dir.joinpath("baf")
         
+    @property
+    def plasma_baf_plot(self) -> Path:
+        return self.baf_dir.joinpath("plasma_baf_plot.png")
+    
+    @property
+    def log_plasma_baf_plot(self) -> Path:
+        return self.baf_dir.joinpath("plasma_baf_plot.log")
         
     def get_pipeline_files(self) -> List[str]:
         outputs = []
         outputs.append(str(self.plasma_corr_read_counts))
+        if self.plot_cnv:
+            outputs.append(str(self.plasma_cnv_plot))
+        if self.plot_baf:
+            outputs.append(str(self.plasma_baf_plot))
         return outputs
