@@ -61,7 +61,7 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, title: Union[None, str] = None) 
 
         ax = sub_fig.add_subplot(sub_grid[0, i])
         added_axes.append(ax)
-        ax.scatter(np.arange(num_bins), chrom_bins['copy'], s=1)
+        ax.scatter(np.arange(num_bins), chrom_bins.iloc[:, 3], s=1)
 
         sns.despine(ax=ax, offset=1)
         ax.spines['top'].set_visible(False)

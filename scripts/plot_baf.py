@@ -6,13 +6,13 @@ from plot_bins import plot_bins
 def main(args):
     df = pd.read_csv(args.plasma_allele_counts, sep='\t')
     
-    hap_data = df.groupby("hap_block")['allele_0_count', 'allele_1_count'].sum()
+    hap_data = df.groupby(["chrom", "hap_block_start", "hap_block_end"])['allele_0_count', 'allele_1_count'].sum()
     hap_data['depth'] = hap_data['allele_0_count'] + hap_data['allele_1_count']
     hap_data['baf'] = hap_data['allele_0_count'] / hap_data['depth']
     
-    hap_data_subset = hap_data[hap_data['depth'] > hap_data['depth'].quantile(0.01)] 
-    df_bins = hap_data_subset[['hap_block_start', 'hap_block_end', 'baf']]  
-    df_bins.rename(columns={'hap_block_start': 'Start', 'hap_block_end': 'End'}, inplace=True)
+    hap_data_subset = hap_data[hap_data['depth'] > hap_data['depth'].quantile(0.1)] 
+    df_bins = hap_data_subset.reset_index()
+    df_bins.rename(columns={'chrom': 'Chromosome', 'hap_block_start': 'Start', 'hap_block_end': 'End'}, inplace=True)
     
     plot_bins(df_bins, args.baf_plot, y_vars=['baf'])
     
