@@ -8,20 +8,20 @@ class ConfigManager:
         
     @property
     def plot_cnv(self) -> bool:
-        return self.config['plots']['cnv']
+        return self.config['out_plots']['cnv']
         
     @property
     def plot_baf(self) -> bool:
-        return self.config['plots']['baf']
+        return self.config['out_plots']['baf']
     
     # Inputs: data files
     @property
     def plasma_read_counts(self) -> Path:
-        return Path(self.config['plasma_read_counts']).resolve()
+        return Path(self.config['data']['plasma_read_counts']).resolve()
     
     @property
     def plasma_allele_counts(self) -> Path:
-        return Path(self.config['plasma_allele_counts']).resolve() 
+        return Path(self.config['data']['plasma_allele_counts']).resolve() 
      
     # Inputs: gc-map correction
     @property

@@ -1,0 +1,15 @@
+out_dir: "results/tfri-pair-4-clone-c"
+
+out_plots:
+  cnv: True
+  baf: True
+
+data:
+  plasma_read_counts: "smoke-test-data/tfri-pair-4-clone-c/read_counts.wig"
+  plasma_allele_counts: "smoke-test-data/tfri-pair-4-clone-c/allele_counts.tsv.gz"
+
+exclude_regions:
+
+cnv:
+  gc_file: "smoke-test-data/tfri-pair-4-clone-c/b37_500k.gc.wig"
+  map_file: "smoke-test-data/tfri-pair-4-clone-c/b37_500k.map.wig"
