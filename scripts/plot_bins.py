@@ -34,6 +34,9 @@ def plot_bins(df_bins: pd.DataFrame, png_path: Path, y_vars: List[str]) -> None:
         width_ratios = [chrms_sizes[x] for x in chrms]
         sub_grid = grid[row_idx].subgridspec(nrows=1, ncols=len(chrms), width_ratios=width_ratios, wspace=0.01)
         _plot_bins(df_bins_yvar, sub_grid, title=y_var)
+        
+    # set x and y axis
+    fig.text(0.5, 0.01, 'Chromosomes', ha='center', va='center', fontsize=16)
 
     # store sup figure
     grid.tight_layout(fig)
@@ -61,19 +64,22 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, title: Union[None, str] = None) 
 
         ax = sub_fig.add_subplot(sub_grid[0, i])
         added_axes.append(ax)
-        ax.scatter(np.arange(num_bins), chrom_bins.iloc[:, 3], s=1)
+        ax.scatter(np.arange(num_bins), chrom_bins.iloc[:, 3], s=1, alpha=0.5)
 
         sns.despine(ax=ax, offset=1)
         ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-
+        ax.spines['right'].set_visible(True)
+        ax.spines['right'].set_color('0.8')
+        
+        # set vertical axis
         if i != 0:
             ax.spines['left'].set_visible(False)
             ax.set_yticks([])
             ax.set_yticklabels([])
         else:
             ax.tick_params(axis='x', which='major', labelsize=12)
-
+            
+        # set chromosome tick
         ax.set_xticks([num_bins / 2])
         ax.set_xticklabels([chrm], fontsize=12)
         
@@ -90,5 +96,5 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, title: Union[None, str] = None) 
     if title is not None:
         ax = sub_fig.add_subplot(sub_grid[:])
         ax.axis("off")
-        ax.set_title(title)
+        ax.set_title(title, fontsize=16)
         

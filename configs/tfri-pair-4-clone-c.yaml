@@ -1,4 +1,4 @@
-out_dir: "local-data/tfri-pair-4-clone-c"
+out_dir: "local-runs/tfri-pair-4-clone-c"
 
 out_plots:
   cnv: True
