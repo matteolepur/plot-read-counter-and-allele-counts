@@ -1,6 +1,5 @@
 .snakemake/
 *__pycache__/
 .vscode/
-*smoke-test/
-*smoke-test-data/
-*results/
+local-data/
+local-runs/
