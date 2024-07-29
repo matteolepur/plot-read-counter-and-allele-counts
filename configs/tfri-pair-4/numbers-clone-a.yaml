@@ -1,0 +1,15 @@
+out_dir: "numbers-runs/tfri-pair-4-clone-a"
+
+out_plots:
+  cnv: True
+  baf: True
+
+data:
+  plasma_read_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull034/numbers-runs/tfri-pair-4-clone-a/read_counts/read_counts.wig"
+  plasma_allele_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull034/numbers-runs/tfri-pair-4-clone-a/allele_counts/results/counts/allele_counts.tsv.gz"
+
+exclude_regions:
+
+cnv:
+  gc_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.gc.wig"
+  map_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.map.wig"
