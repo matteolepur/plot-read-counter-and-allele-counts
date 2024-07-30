@@ -1,4 +1,4 @@
-out_dir: "numbers-runs/tfri-pair-4-clone-a"
+out_dir: "numbers-runs/tfri-pair-4/clone-a"
 
 out_plots:
   cnv: True
