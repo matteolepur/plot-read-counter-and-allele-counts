@@ -35,14 +35,12 @@ rule step_2_plot_cnv:
         config.plasma_cnv_plot
     conda:
         "envs/plot_cnv.yaml"
-    params:
-        plots_dir=config.cnv_dir
     log:
         config.log_plasma_cnv_plot
     shell:
         "python scripts/plot_cnv.py "
         "--plasma-corr-read-counts {input} "
-        "--plots-dir {params.plots_dir} "
+        "--cnv-plot {output} "
         "&> {log}"
 
 
