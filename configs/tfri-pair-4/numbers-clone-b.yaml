@@ -8,8 +8,8 @@ data:
   plasma_read_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull034/numbers-runs/tfri-pair-4-clone-b/read_counts/read_counts.wig"
   plasma_allele_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull034/numbers-runs/tfri-pair-4-clone-b/allele_counts/results/counts/allele_counts.tsv.gz"
 
-blacklist_regions_file: "blacklist_2018.10.23.txt"
+blacklist_regions_file: "references/blacklist_2018.10.23.txt"
 
 cnv:
-  gc_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.gc.wig"
-  map_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.map.wig"
+  gc_file: "references/b37_autosomes_500k.gc.wig"
+  map_file: "references/b37_autosomes_500k.map.wig"
