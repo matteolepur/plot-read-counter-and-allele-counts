@@ -1,6 +1,5 @@
 .snakemake/
 *__pycache__/
 .vscode/
-local-data/
-local-runs/
 numbers-runs/
+archive/
