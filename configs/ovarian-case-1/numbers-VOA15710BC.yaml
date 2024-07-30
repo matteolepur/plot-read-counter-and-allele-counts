@@ -5,11 +5,11 @@ out_plots:
   baf: True
 
 data:
-  plasma_read_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull035/numbers-runs/ovarian-case-1/VOA15710P/read_counts/read_counts.wig"
-  plasma_allele_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull035/numbers-runs/ovarian-case-1/VOA15710P/allele_counts/results/counts/allele_counts.tsv.gz"
+  plasma_read_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull035/numbers-runs/ovarian-case-1/VOA15710BC/read_counts/read_counts.wig"
+  plasma_allele_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull035/numbers-runs/ovarian-case-1/VOA15710BC/allele_counts/results/counts/allele_counts.tsv.gz"
 
-blacklist_regions_file: "blacklist_2018.10.23.txt"
+blacklist_regions_file: "references/blacklist_2018.10.23.txt"
 
 cnv:
-  gc_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.gc.wig"
-  map_file: "local-data/tfri-pair-4-clone-c/b37_autosomes_500k.map.wig"
+  gc_file: "references/b37_autosomes_500k.gc.wig"
+  map_file: "references/b37_autosomes_500k.map.wig"
