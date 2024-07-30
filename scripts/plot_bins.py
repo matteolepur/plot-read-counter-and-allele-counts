@@ -28,12 +28,16 @@ def plot_bins(df_bins: pd.DataFrame, png_path: Path, y_vars: List[str]) -> None:
 
     # plot copy in sub fig
     for row_idx, y_var in enumerate(y_vars):
+        # plot data
         df_bins_yvar = df_bins[['Chromosome', 'Start', 'End', y_var]]
+        # grid specifications 
         chrms = df_bins_yvar['Chromosome'].unique()
         chrms_sizes = df_bins_yvar['Chromosome'].value_counts()
         width_ratios = [chrms_sizes[x] for x in chrms]
         sub_grid = grid[row_idx].subgridspec(nrows=1, ncols=len(chrms), width_ratios=width_ratios, wspace=0.01)
-        _plot_bins(df_bins_yvar, sub_grid, title=y_var)
+        # plot
+        common_y_lims = get_common_y_lims(df_bins_yvar, y_var)
+        _plot_bins(df_bins_yvar, sub_grid, common_y_lims, title=y_var)
         
     # set x and y axis
     fig.text(0.5, 0.01, 'Chromosomes', ha='center', va='center', fontsize=16)
@@ -42,8 +46,15 @@ def plot_bins(df_bins: pd.DataFrame, png_path: Path, y_vars: List[str]) -> None:
     grid.tight_layout(fig)
     fig.savefig(png_path, bbox_inches='tight')
 
+def get_common_y_lims(df_bins_yvar, y_var) -> List[float]:
+    if y_var == 'copy':
+        common_y_lims = [df_bins_yvar[y_var].quantile(0.01), df_bins_yvar[y_var].quantile(0.99)]
+    elif y_var == 'baf':
+        common_y_lims = [-0.1, 1.1]
+    return common_y_lims
 
-def _plot_bins(df_bins: pd.DataFrame, sub_grid, title: Union[None, str] = None) -> None:
+
+def _plot_bins(df_bins: pd.DataFrame, sub_grid, y_lims: List[float], title: Union[None, str] = None) -> None:
     """
     Args:
         df_bins: pd.DataFrame of genomic data in .bed format
@@ -79,20 +90,13 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, title: Union[None, str] = None) 
         else:
             ax.tick_params(axis='x', which='major', labelsize=12)
             
-        # set chromosome tick
+        # set x axis chromosome tick
         ax.set_xticks([num_bins / 2])
         ax.set_xticklabels([chrm], fontsize=12)
         
-    all_min_y, all_max_y = [], []
-    for a in added_axes:  # only use axes that correspond to chroms.
-        y_lims = a.get_ylim()
-        all_min_y.append(y_lims[0])
-        all_max_y.append(y_lims[1])
+        # set y axis limits
+        ax.set_ylim(y_lims)
         
-    common_ylim = [median(all_min_y), median(all_max_y)]
-    for a in added_axes:
-        a.set_ylim(common_ylim)
-    
     if title is not None:
         ax = sub_fig.add_subplot(sub_grid[:])
         ax.axis("off")
