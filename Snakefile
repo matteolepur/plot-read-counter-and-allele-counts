@@ -28,9 +28,28 @@ rule step_1_correct_reads:
         "&> {log}"
 
 
-rule step_2_plot_cnv:
+rule step_2_filter_genomic_regions:
     input:
         config.plasma_corr_read_counts
+    output:
+        config.filtered_plasma_corr_read_counts
+    params:
+        config.blacklist_regions_file
+    conda:
+        "envs/prep_reads.yaml"
+    log:
+        config.log_filtered_plasma_corr_read_counts
+    shell:
+        "python scripts/filter_bins.py "
+        "--filtered-corr-read-counts {output} "
+        "--corr-read-counts {input} "
+        "--blacklist-regions {params} "
+        "&> {log}"
+
+
+rule step_2_plot_cnv:
+    input:
+        config.filtered_plasma_corr_read_counts
     output:
         config.plasma_cnv_plot
     conda:

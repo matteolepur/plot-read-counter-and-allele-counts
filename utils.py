@@ -32,6 +32,10 @@ class ConfigManager:
     def map_file(self) -> Path:
         return Path(self.config['cnv']['map_file']).resolve()
     
+    @property
+    def blacklist_regions_file(self) -> Path:
+        return Path(self.config['blacklist_regions_file']).resolve()
+    
     # Outputs: gc-map correction plots
     @property
     def out_dir(self) -> Path:
@@ -48,6 +52,14 @@ class ConfigManager:
     @property
     def log_plasma_corr_read_counts(self) -> Path:
         return self.cnv_dir.joinpath("plasma_corr_read_counts.log")
+    
+    @property
+    def filtered_plasma_corr_read_counts(self) -> Path:
+        return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.tsv")
+    
+    @property
+    def log_filtered_plasma_corr_read_counts(self) -> Path:
+        return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.log")
     
     @property
     def plasma_cnv_plot(self) -> Path:
