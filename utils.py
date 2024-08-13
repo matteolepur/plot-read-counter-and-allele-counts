@@ -36,6 +36,10 @@ class ConfigManager:
     def blacklist_regions_file(self) -> Path:
         return Path(self.config['blacklist_regions_file']).resolve()
     
+    @property
+    def reference_genome(self) -> str:
+        return self.config['reference_genome']
+    
     # Outputs: gc-map correction plots
     @property
     def out_dir(self) -> Path:

@@ -34,7 +34,8 @@ rule step_2_filter_genomic_regions:
     output:
         config.filtered_plasma_corr_read_counts
     params:
-        config.blacklist_regions_file
+        blist = config.blacklist_regions_file,
+        ref = config.reference_genome
     conda:
         "envs/prep_reads.yaml"
     log:
@@ -43,7 +44,8 @@ rule step_2_filter_genomic_regions:
         "python scripts/filter_bins.py "
         "--filtered-corr-read-counts {output} "
         "--corr-read-counts {input} "
-        "--blacklist-regions {params} "
+        "--blacklist-regions {params.blist} "
+        "--reference-genome {params.ref} "
         "&> {log}"
 
 
