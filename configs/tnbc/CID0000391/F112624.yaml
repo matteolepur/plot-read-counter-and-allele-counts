@@ -1,12 +1,12 @@
-out_dir: "tnbc-runs/CID0000391/F112624"
+out_dir: "runs/tnbc-runs/CID0000391/F112624"
 
 out_plots:
   cnv: True
-  baf: False
+  baf: True
 
 data:
   plasma_read_counts: "tnbc-data/CID0000391/F112624.wig"
-  plasma_allele_counts: "/dummy/path"
+  plasma_allele_counts: "/home/matteo/Desktop/anything-numbers-pulls/cfclone-pulls/pull036/numbers-runs/tnbc/CID0000391/F112624/allele_counts/results/counts/allele_counts.tsv.gz"
 
 reference_genome: "hg38"
 blacklist_regions_file: "references/blacklist_GRCh38.GCA_000001405.2_centromere_acen.txt"

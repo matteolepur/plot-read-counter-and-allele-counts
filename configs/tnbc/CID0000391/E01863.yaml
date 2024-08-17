@@ -1,4 +1,4 @@
-out_dir: "tnbc-runs/CID0000391/E01863"
+out_dir: "runs/tnbc-runs/CID0000391/E01863"
 
 out_plots:
   cnv: True
