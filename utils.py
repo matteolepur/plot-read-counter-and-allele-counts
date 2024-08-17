@@ -57,6 +57,8 @@ class ConfigManager:
     def log_plasma_corr_read_counts(self) -> Path:
         return self.cnv_dir.joinpath("plasma_corr_read_counts.log")
     
+    
+    # Outputs: filtered data outputs
     @property
     def filtered_plasma_corr_read_counts(self) -> Path:
         return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.tsv")
@@ -66,6 +68,19 @@ class ConfigManager:
         return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.log")
     
     @property
+    def baf_dir(self) -> Path:
+        return self.out_dir.joinpath("baf")
+    
+    @property
+    def filtered_plasma_allele_counts(self) -> Path:
+        return self.cnv_dir.joinpath("filtered_allele_counts.tsv")
+    
+    @property
+    def log_filtered_plasma_allele_counts(self) -> Path:
+        return self.cnv_dir.joinpath("filtered_plasma_allele_counts.log")
+    
+    # Outputs: plots
+    @property
     def plasma_cnv_plot(self) -> Path:
         return self.cnv_dir.joinpath("plasma_cnv_plot.png")
     
@@ -73,11 +88,6 @@ class ConfigManager:
     def log_plasma_cnv_plot(self) -> Path:
         return self.cnv_dir.joinpath("plasma_cnv_plot.log")
     
-    # Outputs: baf plots
-    @property
-    def baf_dir(self) -> Path:
-        return self.out_dir.joinpath("baf")
-        
     @property
     def plasma_baf_plot(self) -> Path:
         return self.baf_dir.joinpath("plasma_baf_plot.png")
