@@ -50,6 +50,11 @@ class ConfigManager:
         return self.out_dir.joinpath("cnv")
     
     @property
+    def baf_dir(self) -> Path:
+        return self.out_dir.joinpath("baf")
+    
+    # Outputs: gc-map correction 
+    @property
     def plasma_corr_read_counts(self) -> Path:
         return self.cnv_dir.joinpath("plasma_corr_read_counts.tsv")
     
@@ -60,6 +65,10 @@ class ConfigManager:
     
     # Outputs: filtered data outputs
     @property
+    def baf_dir(self) -> Path:
+        return self.out_dir.joinpath("baf")
+    
+    @property
     def filtered_plasma_corr_read_counts(self) -> Path:
         return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.tsv")
     
@@ -68,16 +77,12 @@ class ConfigManager:
         return self.cnv_dir.joinpath("filtered_plasma_corr_read_counts.log")
     
     @property
-    def baf_dir(self) -> Path:
-        return self.out_dir.joinpath("baf")
-    
-    @property
     def filtered_plasma_allele_counts(self) -> Path:
-        return self.cnv_dir.joinpath("filtered_allele_counts.tsv")
+        return self.baf_dir.joinpath("filtered_plasma_allele_counts.tsv")
     
     @property
     def log_filtered_plasma_allele_counts(self) -> Path:
-        return self.cnv_dir.joinpath("filtered_plasma_allele_counts.log")
+        return self.baf_dir.joinpath("filtered_plasma_allele_counts.log")
     
     # Outputs: plots
     @property

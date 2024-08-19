@@ -1,0 +1,15 @@
+out_dir: "runs/tnbc/CID0000220/E01853"
+
+out_plots:
+  cnv: True
+  baf: False
+
+data:
+  plasma_read_counts: "tnbc-data/CID0000220/E01853/E01853.wig"
+  plasma_allele_counts: "tnbc-data/CID0000220/E01853/allele_counts.tsv.gz"
+
+reference_genome: "hg38"
+blacklist_regions_file: "references/blacklist_GRCh38.GCA_000001405.2_centromere_acen.txt"
+cnv:
+  gc_file: "references/gc_hg38_1000kb_autosomes.wig"
+  map_file: "references/map_hg38_1000kb_autosomes.wig"

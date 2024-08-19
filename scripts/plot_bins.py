@@ -26,7 +26,7 @@ def plot_bins(df_bins: pd.DataFrame, png_path: Path, y_vars: List[str]) -> None:
     fig = plt.figure(figsize=(16, num_rows * 4))
     grid = fig.add_gridspec(nrows=num_rows, ncols=1, hspace=0.5)
 
-    # plot copy in sub fig
+    # plot y_var in sub fig
     for row_idx, y_var in enumerate(y_vars):
         # plot data
         df_bins_yvar = df_bins[['Chromosome', 'Start', 'End', y_var]]
@@ -72,14 +72,23 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, y_lims: List[float], title: Unio
         chrom_bins = df_bins[df_bins['Chromosome'] == chrm]
         num_bins = chrom_bins.shape[0]
         chrom_bins['idx'] = np.arange(num_bins)
-
+        
+        # create subplot to show yvar
         ax = sub_fig.add_subplot(sub_grid[0, i])
         added_axes.append(ax)
         ax.scatter(np.arange(num_bins), chrom_bins.iloc[:, 3], s=1, alpha=0.5)
-
+        
+        # create vertical line at end of subplot
+        ax.axvline(num_bins, color='0.8', linewidth=1)
+        
+        # if plotting baf data, add horizontal line at 0.5
+        if title == 'baf':
+            ax.axhline(0.5, color='0.8', linewidth=1, linestyle='--')
+        
+        # settings for subplot axis/borders
         sns.despine(ax=ax, offset=1)
         ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(True)
+        ax.spines['right'].set_visible(False)
         ax.spines['right'].set_color('0.8')
         
         # set vertical axis
@@ -98,7 +107,8 @@ def _plot_bins(df_bins: pd.DataFrame, sub_grid, y_lims: List[float], title: Unio
         ax.set_ylim(y_lims)
         
     if title is not None:
-        ax = sub_fig.add_subplot(sub_grid[:])
-        ax.axis("off")
-        ax.set_title(title, fontsize=16)
+        # ax = sub_fig.add_subplot(sub_grid[:])
+        # ax.axis("off")
+        # ax.set_title(title, fontsize=16)
+        added_axes[0].set_ylabel(title, fontsize=12)
         
