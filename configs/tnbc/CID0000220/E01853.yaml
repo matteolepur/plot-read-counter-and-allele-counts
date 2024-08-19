@@ -2,7 +2,7 @@ out_dir: "runs/tnbc/CID0000220/E01853"
 
 out_plots:
   cnv: True
-  baf: False
+  baf: True
 
 data:
   plasma_read_counts: "tnbc-data/CID0000220/E01853/E01853.wig"

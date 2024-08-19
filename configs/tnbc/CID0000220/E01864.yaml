@@ -1,12 +1,12 @@
-out_dir: "runs/tnbc/CID0004034/E01837"
+out_dir: "runs/tnbc/CID0000220/E01864"
 
 out_plots:
   cnv: True
-  baf: False
+  baf: True
 
 data:
-  plasma_read_counts: "tnbc-data/CID0004034/E01837.wig"
-  plasma_allele_counts: "/dummy/path"
+  plasma_read_counts: "tnbc-data/CID0000220/E01864/E01864.wig"
+  plasma_allele_counts: "tnbc-data/CID0000220/E01864/allele_counts.tsv.gz"
 
 reference_genome: "hg38"
 blacklist_regions_file: "references/blacklist_GRCh38.GCA_000001405.2_centromere_acen.txt"
